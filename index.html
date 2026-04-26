@@ -1,0 +1,584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 12.0px 'Apple Color Emoji'; font-kerning: none}
+    span.s3 {font: 12.0px 'Lucida Grande'; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;meta name="wx-share-title" content="Door Closer - 你能关闭不必要的门吗？"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta name="wx-share-desc" content="来自MIT的实验，测试你是否会被太多选择困住。"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta name="wx-share-img" content="https://你的用户名.github.io/door-game/icon.jpg"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Door Closer – MIT Experiment | Xiang Yu Edition&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>* {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>user-select: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: linear-gradient(145deg, #1a3c2c 0%, #0e2a1e 100%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>min-height: 100vh;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.game-container {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #2b4b35;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 64px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 24px 28px 36px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: 0 25px 40px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #6f9e7c;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.game-panel {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #ecd9b4;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-image: radial-gradient(circle at 25% 40%, rgba(255,245,215,0.6) 2%, transparent 2.5%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-size: 28px 28px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 48px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 24px 28px 32px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: inset 0 0 0 2px #fef0ce, 0 12px 20px rgba(0,0,0,0.3);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>h1 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 0 0 8px 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1.7rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: 800;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #2c2b26;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: -0.5px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gap: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>h1 small {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.75rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: 400;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #00000022;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 4px 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 40px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #3a2a1e;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.sub {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #4a3b28;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-style: italic;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: -8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 24px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: 500;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.doors-area {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gap: 30px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>flex-wrap: wrap;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 30px 0 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.door-card {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #e7b874;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: linear-gradient(145deg, #e0ac6a, #c68b46);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 180px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 28px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 20px 12px 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: 0 12px 0 #7a4a1e;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #ffdfaa;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: relative;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: transform 0.1s linear, opacity 0.2s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transform: scale(1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.door-card.vanished {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>opacity: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transform: scale(0) !important;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>pointer-events: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overflow: hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: all 0.2s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.door-title {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: 800;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1.4rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #2c2b26cc;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 4px 14px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 60px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #ffefcf;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 2px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.reward-badge {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1.8rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: bold;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #2d2b23;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 12px 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 8px 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 48px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #ffd966;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: monospace;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 1px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.click-count {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #30271e;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #ffecb3;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 5px 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 30px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 6px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.timer-bar-container {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 6px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #5a3a1a;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 4px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overflow: hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.timer-bar {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #e67e22;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: width 0.1s linear;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.shrink-warning {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.7rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #aa2e1ecc;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: white;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 2px 6px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.stats {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #1e2a1c;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 14px 28px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 60px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 20px 0 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #f9e2b7;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: bold;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.stat {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1.3rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #00000044;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 4px 18px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 36px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.stat span {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1.9rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: 800;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #ffd966;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-right: 6px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>button {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #dc9e4a;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: bold;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1.1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 12px 24px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 60px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 0 #7a4516;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: 0.07s linear;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: inherit;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #2c241a;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>button:active {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transform: translateY(2px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: 0 1px 0 #7a4516;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.info-text {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #2e2b22aa;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(4px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 10px 18px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 32px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 0.75rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: #ffefcf;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.floating {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 1.4rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: bold;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: gold;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-shadow: 1px 1px 0 black;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>pointer-events: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>animation: floatUp 0.8s ease-out forwards;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 100;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>@keyframes floatUp {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>0% { opacity: 1; transform: translateY(0px); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>100% { opacity: 0; transform: translateY(-50px); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>@media (max-width: 620px) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.doors-area { gap: 12px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.door-card { width: 130px; padding: 12px 6px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>.reward-badge { font-size: 1.2rem; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="game-container"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="game-panel"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h1&gt;</span><span class="s2">🚪</span><span class="s1"> DOOR CLOSER GAME &lt;small&gt;MIT experiment – exact rules&lt;/small&gt;&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="sub"&gt;</span><span class="s2">⚡</span><span class="s1"> "What would Xiang Yu do?" – Burn the boats, sink the pots </span><span class="s2">⚡</span><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="doors-area" id="doorsArea"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="stats"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="stat"&gt;</span><span class="s2">🎯</span><span class="s1"> Clicks left: &lt;span id="clicksLeft"&gt;100&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="stat"&gt;</span><span class="s2">💰</span><span class="s1"> Total cash: &lt;span id="totalCash"&gt;0&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button id="resetBtn"&gt;</span><span class="s2">🔁</span><span class="s1"> RESET (sink the pots)&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="info-text"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">💡</span><span class="s1"> &lt;strong&gt;EXACT MIT RULES (from the text):&lt;/strong&gt;&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>• Each click costs 1 of 100 total clicks.&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>• First click on any door: opens it ($0).&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>• &lt;strong&gt;Consecutive clicks on the same door&lt;/strong&gt; </span><span class="s3">→</span><span class="s1"> fluctuating cash (ONE door always pays higher than the others).&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>• &lt;strong&gt;Switching to a different door&lt;/strong&gt; </span><span class="s3">→</span><span class="s1"> costs a click, gives $0 (even if that door was opened before).&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>• </span><span class="s2">⏰</span><span class="s1"> If you ignore a door for 6 seconds, it shrinks and VANISHES forever.&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>• </span><span class="s2">🧠</span><span class="s1"> Optimal strategy: test each door once (3 clicks, earn $0), find the high‑value door, then click ONLY that door for the remaining 97 clicks. But the fear of losing options makes people switch and waste clicks – that's the "inner paralysis".</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;footer&gt;</span><span class="s2">📉</span><span class="s1"> Every switch loses a potential earning click. Can you close the wrong doors and focus?&lt;/footer&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// ----- GAME STATE -----</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let clicksRemaining = 100;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let totalEarned = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let gameActive = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let lastClickedDoor = -1;<span class="Apple-converted-space">          </span>// index of last clicked door, -1 = none yet</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let doorOpened = [false, false, false];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let doorActive = [true, true, true];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let shrinkTimeouts = [null, null, null];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let intervalIds = [null, null, null];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let doorElements = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let doorsData = []; // each: { clickCount, lastClickTime }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const VANISH_DELAY_MS = 6000;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// ----- REWARD STRUCTURE (hidden from player) -----</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Primary door (index 0) ALWAYS gives more than secondary doors (index 1 &amp; 2)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const PRIMARY_MIN = 15;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const PRIMARY_MAX = 25;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const SECONDARY_MIN = 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const SECONDARY_MAX = 10;<span class="Apple-converted-space">  </span>// 10 &lt; 15, so primary always strictly higher</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function getClickReward(doorIndex) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Only called when it's a consecutive click on same opened door</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (doorIndex === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return Math.floor(Math.random() * (PRIMARY_MAX - PRIMARY_MIN + 1)) + PRIMARY_MIN;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return Math.floor(Math.random() * (SECONDARY_MAX - SECONDARY_MIN + 1)) + SECONDARY_MIN;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Floating message animation (cash or warning)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function showFloatingMessage(x, y, text, isCash = true) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const div = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>div.className = 'floating';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>div.innerText = text;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>div.style.color = isCash ? 'gold' : '#ffaa88';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>div.style.left = `${x - 20}px`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>div.style.top = `${y - 30}px`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.body.appendChild(div);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>setTimeout(() =&gt; div.remove(), 800);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Update door scale (shrinking effect based on time since last click)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function updateDoorScale(doorIndex) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const el = doorElements[doorIndex];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!el || !doorActive[doorIndex]) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const lastClick = doorsData[doorIndex]?.lastClickTime || 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const elapsed = Date.now() - lastClick;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let remaining = Math.max(0, VANISH_DELAY_MS - elapsed);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let scale = remaining / VANISH_DELAY_MS;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>scale = Math.max(0, Math.min(1, scale));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>el.style.transform = `scale(${scale})`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Update timer bar and warning text</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function updateTimerBar(doorIndex) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const el = doorElements[doorIndex];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!el || !doorActive[doorIndex]) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const bar = el.querySelector('.timer-bar');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!bar) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const lastClick = doorsData[doorIndex]?.lastClickTime || 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const elapsed = Date.now() - lastClick;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const percent = Math.max(0, Math.min(100, (elapsed / VANISH_DELAY_MS) * 100));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>bar.style.width = `${100 - percent}%`;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let warningEl = el.querySelector('.shrink-warning');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!warningEl) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>warningEl = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>warningEl.className = 'shrink-warning';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>el.appendChild(warningEl);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!doorActive[doorIndex] || !gameActive) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>warningEl.style.display = 'none';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (elapsed &gt; VANISH_DELAY_MS - 1500) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>warningEl.style.display = 'block';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const secondsLeft = ((VANISH_DELAY_MS - elapsed) / 1000).toFixed(1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>warningEl.innerText = `</span><span class="s2">⚠️</span><span class="s1"> vanishes in ${secondsLeft}s </span><span class="s2">⚠️</span><span class="s1">`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>warningEl.style.display = 'none';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function updateDoorVisuals() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>for (let i = 0; i &lt; 3; i++) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const el = doorElements[i];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!el) continue;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!doorActive[i]) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>el.classList.add('vanished');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>continue;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>el.classList.remove('vanished');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const rewardSpan = el.querySelector('.reward-value');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!doorOpened[i]) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>rewardSpan.innerText = `</span><span class="s2">❓</span><span class="s1"> ???`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>rewardSpan.innerText = `</span><span class="s2">💰</span><span class="s1"> ? ?`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>updateTimerBar(i);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>updateDoorScale(i);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('clicksLeft').innerText = clicksRemaining;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('totalCash').innerText = totalEarned;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function scheduleVanish(doorIndex) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (shrinkTimeouts[doorIndex]) clearTimeout(shrinkTimeouts[doorIndex]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!doorActive[doorIndex]) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!gameActive) return;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>shrinkTimeouts[doorIndex] = setTimeout(() =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!gameActive) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!doorActive[doorIndex]) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const last = doorsData[doorIndex]?.lastClickTime || 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (Date.now() - last &lt; VANISH_DELAY_MS - 100) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>scheduleVanish(doorIndex);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>doorActive[doorIndex] = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const doorDiv = doorElements[doorIndex];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (doorDiv) doorDiv.classList.add('vanished');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (intervalIds[doorIndex]) clearInterval(intervalIds[doorIndex]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>shrinkTimeouts[doorIndex] = null;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const infoDiv = document.querySelector('.info-text');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const original = infoDiv.innerHTML;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>infoDiv.innerHTML = `</span><span class="s2">💔</span><span class="s1"> DOOR ${['</span><span class="s2">🔴</span><span class="s1"> A', '</span><span class="s2">🟢</span><span class="s1"> B', '</span><span class="s2">🔵</span><span class="s1"> C'][doorIndex]} VANISHED! You lost that option forever. </span><span class="s2">💔</span><span class="s1">&lt;br&gt;` + original;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (infoDiv.innerHTML.includes("VANISHED")) infoDiv.innerHTML = original;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}, 2000);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>updateDoorVisuals();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}, VANISH_DELAY_MS);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function refreshDoorTimer(doorIndex) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!doorActive[doorIndex]) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>doorsData[doorIndex].lastClickTime = Date.now();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (shrinkTimeouts[doorIndex]) clearTimeout(shrinkTimeouts[doorIndex]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>scheduleVanish(doorIndex);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>updateDoorScale(doorIndex);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>updateTimerBar(doorIndex);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function startUpdater(doorIndex) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (intervalIds[doorIndex]) clearInterval(intervalIds[doorIndex]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>intervalIds[doorIndex] = setInterval(() =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!doorActive[doorIndex] || !gameActive) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>updateTimerBar(doorIndex);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>updateDoorScale(doorIndex);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}, 80);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Core click logic with switch penalty</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function onDoorClick(doorIndex, event) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!gameActive) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (clicksRemaining &lt;= 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>alert("</span><span class="s2">⛔</span><span class="s1"> No clicks left! Game over. Press RESET.");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!doorActive[doorIndex]) return;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const rect = event.currentTarget.getBoundingClientRect();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const clickX = rect.left + rect.width / 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const clickY = rect.top + 20;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Determine if this is a switch (different door than last click)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const isSwitch = (lastClickedDoor !== -1 &amp;&amp; lastClickedDoor !== doorIndex);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let reward = 0;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Spend the click</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>clicksRemaining--;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// First click on this door?</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const firstTimeOnThisDoor = !doorOpened[doorIndex];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (firstTimeOnThisDoor) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>doorOpened[doorIndex] = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>reward = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>showFloatingMessage(clickX, clickY, "OPENED (0)", false);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Door already opened before</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (isSwitch) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Switching costs a click and yields no cash</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>reward = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>showFloatingMessage(clickX, clickY, "SWITCH </span><span class="s3">→</span><span class="s1"> $0", false);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Consecutive click on same door -&gt; earn cash</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>reward = getClickReward(doorIndex);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>totalEarned += reward;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>showFloatingMessage(clickX, clickY, `+${reward}`, true);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Update door stats</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>doorsData[doorIndex].clickCount++;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>refreshDoorTimer(doorIndex);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>lastClickedDoor = doorIndex;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Update click counter on UI</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const clickSpan = doorElements[doorIndex].querySelector('.click-count');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>clickSpan.innerText = `</span><span class="s2">🖱️</span><span class="s1"> clicks: ${doorsData[doorIndex].clickCount}`;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Slight visual feedback for cash vs switch</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const rewardBadge = doorElements[doorIndex].querySelector('.reward-badge');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (reward &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>rewardBadge.style.transform = "scale(1.1)";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; { if (rewardBadge) rewardBadge.style.transform = ""; }, 200);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>} else if (isSwitch &amp;&amp; !firstTimeOnThisDoor) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>rewardBadge.style.transform = "scale(0.95)";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; { if (rewardBadge) rewardBadge.style.transform = ""; }, 150);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>updateDoorVisuals();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (clicksRemaining === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gameActive = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>alert(`</span><span class="s2">🏁</span><span class="s1"> Game finished! Total cash: $${totalEarned}\n\nOptimal strategy would earn much more. Every switch wasted a potential earning click. Did you keep switching? That's the inner paralysis.`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!doorActive.some(v =&gt; v === true) &amp;&amp; clicksRemaining &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gameActive = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>alert("All doors vanished! You let them shrink away. Reset to try again.");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function resetGame() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>for (let i = 0; i &lt; shrinkTimeouts.length; i++) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (shrinkTimeouts[i]) clearTimeout(shrinkTimeouts[i]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (intervalIds[i]) clearInterval(intervalIds[i]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>clicksRemaining = 100;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>totalEarned = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>gameActive = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>lastClickedDoor = -1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>doorOpened = [false, false, false];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>doorActive = [true, true, true];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const now = Date.now();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>doorsData = [</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ clickCount: 0, lastClickTime: now },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ clickCount: 0, lastClickTime: now },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>{ clickCount: 0, lastClickTime: now }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const container = document.getElementById('doorsArea');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>container.innerHTML = '';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>doorElements = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const doorNames = ["</span><span class="s2">🔴</span><span class="s1"> DOOR A", "</span><span class="s2">🟢</span><span class="s1"> DOOR B", "</span><span class="s2">🔵</span><span class="s1"> DOOR C"];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>for (let i = 0; i &lt; 3; i++) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const doorDiv = document.createElement('div');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>doorDiv.className = 'door-card';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>doorDiv.setAttribute('data-idx', i);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>doorDiv.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="door-title"&gt;${doorNames[i]}&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="reward-badge reward-value"&gt;</span><span class="s2">❓</span><span class="s1"> ???&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="click-count"&gt;</span><span class="s2">🖱️</span><span class="s1"> clicks: 0&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="timer-bar-container"&gt;&lt;div class="timer-bar"&gt;&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>doorDiv.addEventListener('click', (e) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const idx = parseInt(doorDiv.getAttribute('data-idx'));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>onDoorClick(idx, e);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>container.appendChild(doorDiv);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>doorElements.push(doorDiv);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>startUpdater(i);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>scheduleVanish(i);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>updateDoorVisuals();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (window._interval) clearInterval(window._interval);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window._interval = setInterval(() =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!gameActive &amp;&amp; clicksRemaining === 0) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>updateDoorVisuals();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}, 150);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('resetBtn').addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (window._interval) clearInterval(window._interval);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>resetGame();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>resetGame();</span></p>
+<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
