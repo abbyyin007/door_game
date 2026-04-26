@@ -3,20 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    
-    <!-- 微信分享标签（已修复位置） -->
-    <meta name="wx-share-title" content="Door Closer - 你能关闭不必要的门吗？">
-    <meta name="wx-share-desc" content="来自MIT的实验，测试你是否会被太多选择困住。">
-    <!-- 图片链接暂时注释掉，等你上传图片后再取消注释 -->
-    <!-- <meta name="wx-share-img" content="https://abbyyin007.github.io/door_game/icon.jpg"> -->
-    
-    <title>Door Closer – MIT Experiment | Xiang Yu Edition</title>
+    <meta name="wx-share-title" content="Door Closer - Can you close unnecessary doors?">
+    <meta name="wx-share-desc" content="MIT experiment on choice overload and decision paralysis.">
+    <title>Door Closer – 3D Wooden Doors | Xiang Yu Experiment</title>
     <style>
-        * {
-            box-sizing: border-box;
-            user-select: none;
-        }
-
+        * { box-sizing: border-box; user-select: none; }
         body {
             font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
             background: linear-gradient(145deg, #1a3c2c 0%, #0e2a1e 100%);
@@ -26,8 +17,8 @@
             align-items: center;
             margin: 0;
             padding: 20px;
+            perspective: 800px;
         }
-
         .game-container {
             background: #2b4b35;
             border-radius: 64px;
@@ -35,7 +26,6 @@
             box-shadow: 0 25px 40px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.1);
             border: 1px solid #6f9e7c;
         }
-
         .game-panel {
             background: #ecd9b4;
             background-image: radial-gradient(circle at 25% 40%, rgba(255,245,215,0.6) 2%, transparent 2.5%);
@@ -44,62 +34,105 @@
             padding: 24px 28px 32px;
             box-shadow: inset 0 0 0 2px #fef0ce, 0 12px 20px rgba(0,0,0,0.3);
         }
-
         h1 {
             margin: 0 0 8px 0;
             font-size: 1.7rem;
             font-weight: 800;
             text-align: center;
             color: #2c2b26;
-            letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
         }
-
-        h1 small {
-            font-size: 0.75rem;
-            font-weight: 400;
-            background: #00000022;
-            padding: 4px 10px;
-            border-radius: 40px;
-            color: #3a2a1e;
-        }
-
-        .sub {
-            text-align: center;
-            color: #4a3b28;
-            font-style: italic;
-            margin-top: -8px;
-            margin-bottom: 24px;
-            font-weight: 500;
-            font-size: 0.85rem;
-        }
-
+        h1 small { font-size: 0.75rem; font-weight: 400; background: #00000022; padding: 4px 10px; border-radius: 40px; color: #3a2a1e; }
+        .sub { text-align: center; color: #4a3b28; font-style: italic; margin-top: -8px; margin-bottom: 24px; font-weight: 500; font-size: 0.85rem; }
         .doors-area {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 35px;
             flex-wrap: wrap;
             margin: 30px 0 20px;
+            perspective: 600px;
         }
 
+        /* ---------- 3D Wooden Door Style ---------- */
         .door-card {
-            background: #e7b874;
-            background: linear-gradient(145deg, #e0ac6a, #c68b46);
-            width: 180px;
-            border-radius: 28px;
-            padding: 20px 12px 20px;
-            text-align: center;
-            box-shadow: 0 12px 0 #7a4a1e;
-            cursor: pointer;
-            border: 1px solid #ffdfaa;
             position: relative;
-            transition: transform 0.1s linear, opacity 0.2s ease;
-            transform: scale(1);
+            width: 180px;
+            border-radius: 8px 12px 12px 8px;
+            padding: 16px 8px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.1s linear, opacity 0.2s ease, box-shadow 0.2s;
+            transform-style: preserve-3d;
+            transform: rotateY(2deg) rotateX(1deg);
+            background: #6b3e1c;
+            box-shadow: 
+                -8px 0 12px -6px rgba(0,0,0,0.5),
+                0 12px 20px -8px rgba(0,0,0,0.6),
+                inset -2px 0 0 rgba(0,0,0,0.2),
+                inset 2px 0 0 rgba(255,235,180,0.2);
+            background-image: repeating-linear-gradient(90deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 2px, transparent 2px, transparent 12px);
+            border: none;
         }
-
+        .door-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -6px;
+            width: 6px;
+            height: 100%;
+            background: #4a2e14;
+            border-radius: 4px 0 0 4px;
+            box-shadow: inset -1px 0 0 rgba(0,0,0,0.3);
+            z-index: -1;
+        }
+        .door-card::after {
+            content: "";
+            position: absolute;
+            top: 8%;
+            left: 5%;
+            width: 90%;
+            height: 84%;
+            border: 2px solid rgba(0,0,0,0.4);
+            border-radius: 6px;
+            pointer-events: none;
+            box-shadow: inset 0 0 0 2px rgba(255,220,150,0.2);
+            z-index: 1;
+        }
+        .door-handle {
+            position: absolute;
+            right: 8px;
+            top: 65%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background: radial-gradient(circle at 30% 30%, #e8c280, #a07030);
+            border-radius: 50%;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,240,180,0.9);
+            border: 1px solid #7a5620;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .lock-hole {
+            position: absolute;
+            right: 34px;
+            top: 68%;
+            width: 8px;
+            height: 8px;
+            background: #2a2a1a;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+            box-shadow: inset 0 0 2px #000, 0 0 0 1px rgba(0,0,0,0.3);
+        }
+        .door-card:hover {
+            transform: rotateY(0deg) scale(1.02);
+            filter: brightness(1.08);
+            transition: all 0.15s;
+            box-shadow: -5px 0 15px -5px rgba(0,0,0,0.6), 0 15px 25px -8px black;
+        }
         .door-card.vanished {
             opacity: 0;
             transform: scale(0) !important;
@@ -108,71 +141,68 @@
             padding: 0;
             margin: 0;
             overflow: hidden;
-            border: none;
-            box-shadow: none;
             transition: all 0.2s ease;
         }
-
         .door-title {
             font-weight: 800;
-            font-size: 1.4rem;
-            background: #2c2b26cc;
+            font-size: 1rem;
+            background: #2a241cdd;
             display: inline-block;
-            padding: 4px 14px;
-            border-radius: 60px;
+            padding: 4px 10px;
+            border-radius: 30px;
             color: #ffefcf;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            backdrop-filter: blur(2px);
+            position: relative;
+            z-index: 5;
         }
-
         .reward-badge {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            background: #2d2b23;
-            margin: 12px 0;
-            padding: 8px 0;
-            border-radius: 48px;
+            background: #2d2b23dd;
+            margin: 6px 0;
+            padding: 4px 0;
+            border-radius: 30px;
             color: #ffd966;
             font-family: monospace;
-            letter-spacing: 1px;
+            position: relative;
+            z-index: 5;
+            backdrop-filter: blur(2px);
         }
-
         .click-count {
-            font-size: 0.85rem;
-            background: #30271e;
+            font-size: 0.7rem;
+            background: #30271ecc;
             color: #ffecb3;
-            padding: 5px 10px;
+            padding: 3px 8px;
             border-radius: 30px;
             display: inline-block;
             margin-top: 6px;
+            position: relative;
+            z-index: 5;
         }
-
         .timer-bar-container {
             width: 100%;
-            height: 6px;
-            background: #5a3a1a;
+            height: 5px;
+            background: #3e2a14;
             border-radius: 4px;
-            margin-top: 12px;
+            margin-top: 10px;
             overflow: hidden;
+            position: relative;
+            z-index: 5;
         }
-
-        .timer-bar {
-            height: 100%;
-            width: 100%;
-            background: #e67e22;
-            transition: width 0.1s linear;
-        }
-
+        .timer-bar { height: 100%; width: 100%; background: #e67e22; transition: width 0.1s linear; }
         .shrink-warning {
-            font-size: 0.7rem;
-            margin-top: 8px;
+            font-size: 0.6rem;
+            margin-top: 6px;
             background: #aa2e1ecc;
             color: white;
             border-radius: 20px;
-            padding: 2px 6px;
+            padding: 2px 5px;
             display: inline-block;
+            position: relative;
+            z-index: 5;
         }
-
         .stats {
             display: flex;
             justify-content: space-between;
@@ -183,21 +213,8 @@
             color: #f9e2b7;
             font-weight: bold;
         }
-
-        .stat {
-            font-size: 1.3rem;
-            background: #00000044;
-            padding: 4px 18px;
-            border-radius: 36px;
-        }
-
-        .stat span {
-            font-size: 1.9rem;
-            font-weight: 800;
-            color: #ffd966;
-            margin-right: 6px;
-        }
-
+        .stat { font-size: 1.3rem; background: #00000044; padding: 4px 18px; border-radius: 36px; }
+        .stat span { font-size: 1.9rem; font-weight: 800; color: #ffd966; margin-right: 6px; }
         button {
             background: #dc9e4a;
             border: none;
@@ -212,12 +229,7 @@
             width: 100%;
             color: #2c241a;
         }
-
-        button:active {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0 #7a4516;
-        }
-
+        button:active { transform: translateY(2px); box-shadow: 0 1px 0 #7a4516; }
         .info-text {
             background: #2e2b22aa;
             backdrop-filter: blur(4px);
@@ -228,7 +240,6 @@
             text-align: center;
             color: #ffefcf;
         }
-
         .floating {
             position: absolute;
             font-size: 1.4rem;
@@ -237,81 +248,58 @@
             text-shadow: 1px 1px 0 black;
             pointer-events: none;
             animation: floatUp 0.8s ease-out forwards;
-            z-index: 100;
+            z-index: 200;
         }
-
         @keyframes floatUp {
             0% { opacity: 1; transform: translateY(0px); }
             100% { opacity: 0; transform: translateY(-50px); }
         }
-
         @media (max-width: 620px) {
-            .doors-area { gap: 12px; }
-            .door-card { width: 130px; padding: 12px 6px; }
-            .reward-badge { font-size: 1.2rem; }
+            .doors-area { gap: 15px; }
+            .door-card { width: 130px; padding: 12px 4px; }
+            .door-title { font-size: 0.8rem; }
+            .reward-badge { font-size: 1rem; }
+            .door-handle { width: 18px; height: 18px; right: 4px; top: 65%; }
+            .lock-hole { right: 26px; top: 68%; width: 6px; height: 6px; }
         }
     </style>
 </head>
 <body>
 <div class="game-container">
     <div class="game-panel">
-        <h1>🚪 DOOR CLOSER GAME <small>MIT experiment – exact rules</small></h1>
+        <h1>🚪 DOOR CLOSER GAME <small>3D Wooden Doors | MIT Experiment</small></h1>
         <div class="sub">⚡ "What would Xiang Yu do?" – Burn the boats, sink the pots ⚡</div>
-
         <div class="doors-area" id="doorsArea"></div>
-
         <div class="stats">
             <div class="stat">🎯 Clicks left: <span id="clicksLeft">100</span></div>
             <div class="stat">💰 Total cash: <span id="totalCash">0</span></div>
         </div>
-
-        <button id="resetBtn">🔁 RESET (sink the pots)</button>
+        <button id="resetBtn">🔁 RESET GAME (sink the pots)</button>
         <div class="info-text">
-            💡 <strong>EXACT MIT RULES (from the text):</strong><br>
-            • Each click costs 1 of 100 total clicks.<br>
-            • First click on any door: opens it ($0).<br>
-            • <strong>Consecutive clicks on the same door</strong> → fluctuating cash (ONE door always pays higher than the others).<br>
-            • <strong>Switching to a different door</strong> → costs a click, gives $0 (even if that door was opened before).<br>
-            • ⏰ If you ignore a door for 6 seconds, it shrinks and VANISHES forever.<br>
-            • 🧠 Optimal strategy: test each door once (3 clicks, earn $0), find the high‑value door, then click ONLY that door for the remaining 97 clicks. But the fear of losing options makes people switch and waste clicks – that's the "inner paralysis".
+            💡 <strong>EXACT MIT RULES:</strong><br>
+            • Each click costs 1 of your 100 total clicks.<br>
+            • First click on any door: opens it ($0). Future clicks on the same door earn random cash.<br>
+            • <strong>One door ALWAYS pays more than the others</strong> (hidden – you must discover it).<br>
+            • <strong>Switching to a different door</strong> → costs a click, gives $0 (even if already opened).<br>
+            • ⏰ If you ignore a door for 6 seconds, it will gradually shrink and VANISH forever.<br>
+            • 🧠 Optimal strategy: test each door once (3 clicks, earn $0), find the high‑paying door, then click ONLY that door for the remaining 97 clicks. But most people waste clicks trying to keep weak doors alive – that's "inner paralysis".
         </div>
-        <footer>📉 Every switch loses a potential earning click. Can you close the wrong doors and focus?</footer>
+        <footer>📉 Every switch wastes a potential earning click. Can you close the wrong doors like Xiang Yu?</footer>
     </div>
 </div>
-
 <script>
-    // ----- GAME STATE -----
-    let clicksRemaining = 100;
-    let totalEarned = 0;
-    let gameActive = true;
-    let lastClickedDoor = -1;          // index of last clicked door, -1 = none yet
-
-    let doorOpened = [false, false, false];
-    let doorActive = [true, true, true];
-    let shrinkTimeouts = [null, null, null];
-    let intervalIds = [null, null, null];
-    let doorElements = [];
-    let doorsData = []; // each: { clickCount, lastClickTime }
-
+    // ----- GAME STATE (fully preserved) -----
+    let clicksRemaining = 100, totalEarned = 0, gameActive = true, lastClickedDoor = -1;
+    let doorOpened = [false, false, false], doorActive = [true, true, true];
+    let shrinkTimeouts = [null, null, null], intervalIds = [null, null, null];
+    let doorElements = [], doorsData = [];
     const VANISH_DELAY_MS = 6000;
-
-    // ----- REWARD STRUCTURE (hidden from player) -----
-    // Primary door (index 0) ALWAYS gives more than secondary doors (index 1 & 2)
-    const PRIMARY_MIN = 15;
-    const PRIMARY_MAX = 25;
-    const SECONDARY_MIN = 1;
-    const SECONDARY_MAX = 10;  // 10 < 15, so primary always strictly higher
+    const PRIMARY_MIN = 15, PRIMARY_MAX = 25, SECONDARY_MIN = 1, SECONDARY_MAX = 10;
 
     function getClickReward(doorIndex) {
-        // Only called when it's a consecutive click on same opened door
-        if (doorIndex === 0) {
-            return Math.floor(Math.random() * (PRIMARY_MAX - PRIMARY_MIN + 1)) + PRIMARY_MIN;
-        } else {
-            return Math.floor(Math.random() * (SECONDARY_MAX - SECONDARY_MIN + 1)) + SECONDARY_MIN;
-        }
+        if (doorIndex === 0) return Math.floor(Math.random() * (PRIMARY_MAX - PRIMARY_MIN + 1)) + PRIMARY_MIN;
+        else return Math.floor(Math.random() * (SECONDARY_MAX - SECONDARY_MIN + 1)) + SECONDARY_MIN;
     }
-
-    // Floating message animation (cash or warning)
     function showFloatingMessage(x, y, text, isCash = true) {
         const div = document.createElement('div');
         div.className = 'floating';
@@ -322,20 +310,14 @@
         document.body.appendChild(div);
         setTimeout(() => div.remove(), 800);
     }
-
-    // Update door scale (shrinking effect based on time since last click)
     function updateDoorScale(doorIndex) {
         const el = doorElements[doorIndex];
         if (!el || !doorActive[doorIndex]) return;
         const lastClick = doorsData[doorIndex]?.lastClickTime || 0;
         const elapsed = Date.now() - lastClick;
-        let remaining = Math.max(0, VANISH_DELAY_MS - elapsed);
-        let scale = remaining / VANISH_DELAY_MS;
-        scale = Math.max(0, Math.min(1, scale));
-        el.style.transform = `scale(${scale})`;
+        let scale = Math.max(0, Math.min(1, (VANISH_DELAY_MS - elapsed) / VANISH_DELAY_MS));
+        el.style.transform = `rotateY(${2 * scale}deg) rotateX(${1 * scale}deg) scale(${scale})`;
     }
-
-    // Update timer bar and warning text
     function updateTimerBar(doorIndex) {
         const el = doorElements[doorIndex];
         if (!el || !doorActive[doorIndex]) return;
@@ -345,77 +327,47 @@
         const elapsed = Date.now() - lastClick;
         const percent = Math.max(0, Math.min(100, (elapsed / VANISH_DELAY_MS) * 100));
         bar.style.width = `${100 - percent}%`;
-
         let warningEl = el.querySelector('.shrink-warning');
-        if (!warningEl) {
-            warningEl = document.createElement('div');
-            warningEl.className = 'shrink-warning';
-            el.appendChild(warningEl);
-        }
-        if (!doorActive[doorIndex] || !gameActive) {
-            warningEl.style.display = 'none';
-            return;
-        }
+        if (!warningEl) { warningEl = document.createElement('div'); warningEl.className = 'shrink-warning'; el.appendChild(warningEl); }
+        if (!doorActive[doorIndex] || !gameActive) { warningEl.style.display = 'none'; return; }
         if (elapsed > VANISH_DELAY_MS - 1500) {
             warningEl.style.display = 'block';
             const secondsLeft = ((VANISH_DELAY_MS - elapsed) / 1000).toFixed(1);
             warningEl.innerText = `⚠️ vanishes in ${secondsLeft}s ⚠️`;
-        } else {
-            warningEl.style.display = 'none';
-        }
+        } else { warningEl.style.display = 'none'; }
     }
-
     function updateDoorVisuals() {
         for (let i = 0; i < 3; i++) {
             const el = doorElements[i];
             if (!el) continue;
-            if (!doorActive[i]) {
-                el.classList.add('vanished');
-                continue;
-            } else {
-                el.classList.remove('vanished');
-            }
+            if (!doorActive[i]) { el.classList.add('vanished'); continue; }
+            else { el.classList.remove('vanished'); }
             const rewardSpan = el.querySelector('.reward-value');
-            if (!doorOpened[i]) {
-                rewardSpan.innerText = `❓ ???`;
-            } else {
-                rewardSpan.innerText = `💰 ? ?`;
-            }
+            rewardSpan.innerText = !doorOpened[i] ? `❓ Closed` : `💰 ? ?`;
             updateTimerBar(i);
             updateDoorScale(i);
         }
         document.getElementById('clicksLeft').innerText = clicksRemaining;
         document.getElementById('totalCash').innerText = totalEarned;
     }
-
     function scheduleVanish(doorIndex) {
         if (shrinkTimeouts[doorIndex]) clearTimeout(shrinkTimeouts[doorIndex]);
-        if (!doorActive[doorIndex]) return;
-        if (!gameActive) return;
-
+        if (!doorActive[doorIndex] || !gameActive) return;
         shrinkTimeouts[doorIndex] = setTimeout(() => {
-            if (!gameActive) return;
-            if (!doorActive[doorIndex]) return;
+            if (!gameActive || !doorActive[doorIndex]) return;
             const last = doorsData[doorIndex]?.lastClickTime || 0;
-            if (Date.now() - last < VANISH_DELAY_MS - 100) {
-                scheduleVanish(doorIndex);
-                return;
-            }
+            if (Date.now() - last < VANISH_DELAY_MS - 100) { scheduleVanish(doorIndex); return; }
             doorActive[doorIndex] = false;
-            const doorDiv = doorElements[doorIndex];
-            if (doorDiv) doorDiv.classList.add('vanished');
+            if (doorElements[doorIndex]) doorElements[doorIndex].classList.add('vanished');
             if (intervalIds[doorIndex]) clearInterval(intervalIds[doorIndex]);
             shrinkTimeouts[doorIndex] = null;
             const infoDiv = document.querySelector('.info-text');
             const original = infoDiv.innerHTML;
-            infoDiv.innerHTML = `💔 DOOR ${['🔴 A', '🟢 B', '🔵 C'][doorIndex]} VANISHED! You lost that option forever. 💔<br>` + original;
-            setTimeout(() => {
-                if (infoDiv.innerHTML.includes("VANISHED")) infoDiv.innerHTML = original;
-            }, 2000);
+            infoDiv.innerHTML = `💔 ${['🔴 Oak Door', '🟢 Pine Door', '🔵 Walnut Door'][doorIndex]} VANISHED! You lost that option forever. 💔<br>` + original;
+            setTimeout(() => { if (infoDiv.innerHTML.includes("VANISHED")) infoDiv.innerHTML = original; }, 2000);
             updateDoorVisuals();
         }, VANISH_DELAY_MS);
     }
-
     function refreshDoorTimer(doorIndex) {
         if (!doorActive[doorIndex]) return;
         doorsData[doorIndex].lastClickTime = Date.now();
@@ -424,7 +376,6 @@
         updateDoorScale(doorIndex);
         updateTimerBar(doorIndex);
     }
-
     function startUpdater(doorIndex) {
         if (intervalIds[doorIndex]) clearInterval(intervalIds[doorIndex]);
         intervalIds[doorIndex] = setInterval(() => {
@@ -433,136 +384,85 @@
             updateDoorScale(doorIndex);
         }, 80);
     }
-
-    // Core click logic with switch penalty
     function onDoorClick(doorIndex, event) {
-        if (!gameActive) return;
-        if (clicksRemaining <= 0) {
-            alert("⛔ No clicks left! Game over. Press RESET.");
+        if (!gameActive || clicksRemaining <= 0 || !doorActive[doorIndex]) {
+            if (clicksRemaining <= 0) alert("⛔ No clicks left! Press RESET.");
             return;
         }
-        if (!doorActive[doorIndex]) return;
-
         const rect = event.currentTarget.getBoundingClientRect();
-        const clickX = rect.left + rect.width / 2;
-        const clickY = rect.top + 20;
-
-        // Determine if this is a switch (different door than last click)
+        const clickX = rect.left + rect.width / 2, clickY = rect.top + 20;
         const isSwitch = (lastClickedDoor !== -1 && lastClickedDoor !== doorIndex);
         let reward = 0;
-
-        // Spend the click
         clicksRemaining--;
-
-        // First click on this door?
-        const firstTimeOnThisDoor = !doorOpened[doorIndex];
-        if (firstTimeOnThisDoor) {
+        const firstTime = !doorOpened[doorIndex];
+        if (firstTime) {
             doorOpened[doorIndex] = true;
-            reward = 0;
-            showFloatingMessage(clickX, clickY, "OPENED (0)", false);
+            showFloatingMessage(clickX, clickY, "OPEN (0)", false);
         } else {
-            // Door already opened before
-            if (isSwitch) {
-                // Switching costs a click and yields no cash
-                reward = 0;
-                showFloatingMessage(clickX, clickY, "SWITCH → $0", false);
-            } else {
-                // Consecutive click on same door -> earn cash
+            if (isSwitch) { showFloatingMessage(clickX, clickY, "SWITCH → $0", false); }
+            else {
                 reward = getClickReward(doorIndex);
                 totalEarned += reward;
-                showFloatingMessage(clickX, clickY, `+${reward}`, true);
+                showFloatingMessage(clickX, clickY, `+$${reward}`, true);
             }
         }
-
-        // Update door stats
         doorsData[doorIndex].clickCount++;
         refreshDoorTimer(doorIndex);
         lastClickedDoor = doorIndex;
-
-        // Update click counter on UI
-        const clickSpan = doorElements[doorIndex].querySelector('.click-count');
-        clickSpan.innerText = `🖱️ clicks: ${doorsData[doorIndex].clickCount}`;
-
-        // Slight visual feedback for cash vs switch
-        const rewardBadge = doorElements[doorIndex].querySelector('.reward-badge');
-        if (reward > 0) {
-            rewardBadge.style.transform = "scale(1.1)";
-            setTimeout(() => { if (rewardBadge) rewardBadge.style.transform = ""; }, 200);
-        } else if (isSwitch && !firstTimeOnThisDoor) {
-            rewardBadge.style.transform = "scale(0.95)";
-            setTimeout(() => { if (rewardBadge) rewardBadge.style.transform = ""; }, 150);
-        }
-
+        doorElements[doorIndex].querySelector('.click-count').innerText = `🖱️ clicks: ${doorsData[doorIndex].clickCount}`;
+        const badge = doorElements[doorIndex].querySelector('.reward-badge');
+        if (reward > 0) { badge.style.transform = "scale(1.1)"; setTimeout(() => badge.style.transform = "", 200); }
+        else if (isSwitch && !firstTime) { badge.style.transform = "scale(0.95)"; setTimeout(() => badge.style.transform = "", 150); }
         updateDoorVisuals();
-
         if (clicksRemaining === 0) {
             gameActive = false;
-            alert(`🏁 Game finished! Total cash: $${totalEarned}\n\nOptimal strategy would earn much more. Every switch wasted a potential earning click. Did you keep switching? That's the inner paralysis.`);
+            alert(`🏁 Game over! Total cash: $${totalEarned}\n\nOptimal strategy would earn much more. Every switch wasted a potential earning click. Did you keep switching? That's inner paralysis.`);
         }
-
         if (!doorActive.some(v => v === true) && clicksRemaining > 0) {
             gameActive = false;
-            alert("All doors vanished! You let them shrink away. Reset to try again.");
+            alert("All doors vanished! You hesitated too long. Press RESET to try again.");
         }
     }
-
     function resetGame() {
-        for (let i = 0; i < shrinkTimeouts.length; i++) {
+        for (let i = 0; i < 3; i++) {
             if (shrinkTimeouts[i]) clearTimeout(shrinkTimeouts[i]);
             if (intervalIds[i]) clearInterval(intervalIds[i]);
         }
-        clicksRemaining = 100;
-        totalEarned = 0;
-        gameActive = true;
-        lastClickedDoor = -1;
-        doorOpened = [false, false, false];
-        doorActive = [true, true, true];
-
+        clicksRemaining = 100; totalEarned = 0; gameActive = true; lastClickedDoor = -1;
+        doorOpened = [false, false, false]; doorActive = [true, true, true];
         const now = Date.now();
-        doorsData = [
-            { clickCount: 0, lastClickTime: now },
-            { clickCount: 0, lastClickTime: now },
-            { clickCount: 0, lastClickTime: now }
-        ];
-
+        doorsData = [{ clickCount: 0, lastClickTime: now }, { clickCount: 0, lastClickTime: now }, { clickCount: 0, lastClickTime: now }];
         const container = document.getElementById('doorsArea');
         container.innerHTML = '';
         doorElements = [];
-        const doorNames = ["🔴 DOOR A", "🟢 DOOR B", "🔵 DOOR C"];
-
+        const doorNames = ["🔴 Oak Door", "🟢 Pine Door", "🔵 Walnut Door"];
         for (let i = 0; i < 3; i++) {
             const doorDiv = document.createElement('div');
             doorDiv.className = 'door-card';
             doorDiv.setAttribute('data-idx', i);
             doorDiv.innerHTML = `
                 <div class="door-title">${doorNames[i]}</div>
-                <div class="reward-badge reward-value">❓ ???</div>
+                <div class="reward-badge reward-value">❓ Closed</div>
                 <div class="click-count">🖱️ clicks: 0</div>
                 <div class="timer-bar-container"><div class="timer-bar"></div></div>
             `;
-            doorDiv.addEventListener('click', (e) => {
-                const idx = parseInt(doorDiv.getAttribute('data-idx'));
-                onDoorClick(idx, e);
-            });
+            const handle = document.createElement('div');
+            handle.className = 'door-handle';
+            const lock = document.createElement('div');
+            lock.className = 'lock-hole';
+            doorDiv.appendChild(handle);
+            doorDiv.appendChild(lock);
+            doorDiv.addEventListener('click', (e) => { onDoorClick(parseInt(doorDiv.getAttribute('data-idx')), e); });
             container.appendChild(doorDiv);
             doorElements.push(doorDiv);
             startUpdater(i);
             scheduleVanish(i);
         }
         updateDoorVisuals();
-
         if (window._interval) clearInterval(window._interval);
-        window._interval = setInterval(() => {
-            if (!gameActive && clicksRemaining === 0) return;
-            updateDoorVisuals();
-        }, 150);
+        window._interval = setInterval(() => { if (gameActive || clicksRemaining !== 0) updateDoorVisuals(); }, 150);
     }
-
-    document.getElementById('resetBtn').addEventListener('click', () => {
-        if (window._interval) clearInterval(window._interval);
-        resetGame();
-    });
-
+    document.getElementById('resetBtn').addEventListener('click', () => { if (window._interval) clearInterval(window._interval); resetGame(); });
     resetGame();
 </script>
 </body>
